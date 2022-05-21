@@ -4,7 +4,7 @@ class MemoryGame {
     // add the rest of the class properties here
     this.pickedCards = []
     this.pairsClicked = 0;
-    this.pairsGuessed = null;
+    this.pairsGuessed = 0;
   }
 
   shuffleCards() {
@@ -21,10 +21,13 @@ class MemoryGame {
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
-    const pairsClicked;
-
-    if (card1 === card2) return 1;
+    this.pairsClicked++
+  if (card1 === card2){
+    this.pairsGuessed ++
+    return true
+  } else {
+    return false
+  }
 
   
 
