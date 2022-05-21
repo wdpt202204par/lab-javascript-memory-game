@@ -41,11 +41,52 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
+  let playingCardEl = undefined // 1ere carte
+  
+
+  function f(el) {
+    return el.getAttribute("data-card-name")
+    // mdn array find
+    // { name: 'aquaman', img: 'aquaman.jpg' }
+  }
+
   // Bind the click event of each element to a function
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
+      card.classList.add("turned")
+      //
+      // si playingCardEl vaut rien => playingCardEl = Card
+      
+      if (playingCardEl===undefined){
+        playingCardEl=card 
+        console.log(card)
+      }
+      // sinon: on veut comparer card avec playing card
+      else {
+        // memoryGame.checkIfPair(playingCardEl,card)
+        
+        const cardA = f(playingCardEl)
+        const cardB = f(card)
+
+        if (memoryGame.checkIfPair(cardA,cardB)===true){
+          playingCardEl.classList.add("blocked")
+          card.classList.add("blocked")
+        }
+        else{
+          playingCardEl.classList.remove('turned')
+          card.classList.remove('turned')
+        }
+        playingCardEl=undefined
+      }
+      
+      //   - si ca match
+      //   - sinon...
+      //   - reset playingCardEl
+      //
       // TODO: write some code here
       console.log(`Card clicked: ${card}`);
+      //document.querySelector('.back').classList.toggle('back',)
+      //document.querySelector('.front').classList.toggle('front',)
     });
   });
 });

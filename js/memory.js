@@ -8,23 +8,31 @@ class MemoryGame {
   }
 
   shuffleCards() {
-    let shuffleCardsArr = [];
-    for (let i = 0; i < this.cards.length; i++) {
-      let j = Math.floor(Math.random() * (i + 1));
-
-      shuffleCardsArr.push(this.cards[j])
-      console.log('hey', i)
-      console.log('hello', shuffleCardsArr)
-    }
+    let shuffleCardsArr = this.cards.sort((a, b) => 0.5 - Math.random());
     return shuffleCardsArr
+    }
     // ... write your code here
-  }
+  
   checkIfPair(card1, card2) {
+    this.pairsClicked += 1
+    if (card1 === card2){
+      this.pairsGuessed +=1;
+      return true;
+    }
+    else {
+      return false;
+    }
     // ... write your code here
   }
 
   checkIfFinished() {
     // ... write your code here
+    if (this.pairsGuessed===this.cards.length/2){
+      return true
+    }
+    else {
+      return false
+    }
   }
 }
 
