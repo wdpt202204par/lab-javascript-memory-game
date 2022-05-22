@@ -9,27 +9,27 @@ class MemoryGame {
 
   shuffleCards() {
     // ... write your code here
-    this.cards.sort(function(a,b) {
+    this.cards.sort(function (a, b) {
       // Math.random() // ]0; 1[, ex: 0.123456
 
       if (Math.random() > .5) {
         return 1
-      } else{
+      } else {
         return -1
       }
     })
   }
 
+
   checkIfPair(card1, card2) {
     this.pairsClicked++
-  if (card1 === card2){
-    this.pairsGuessed ++
-    return true
-  } else {
-    return false
-  }
+    if (card1 === card2) {
+      this.pairsGuessed++
+      return true
+    } else {
+      return false
+    }
 
-  
 
 
   }
