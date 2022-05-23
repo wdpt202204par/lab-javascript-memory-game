@@ -28,6 +28,7 @@ const cards = [
 const memoryGame = new MemoryGame(cards);
 
 window.addEventListener('load', (event) => {
+  memoryGame.shuffleCards()
   let html = '';
   memoryGame.cards.forEach((pic) => {
     html += `
@@ -41,13 +42,12 @@ window.addEventListener('load', (event) => {
   // Add all the divs to the HTML
   document.querySelector('#memory-board').innerHTML = html;
 
-  let playingCardEl = undefined // 1ere carte
-  
+  let card1 = undefined
+  let card2 = undefined
+  let card3 = undefined
 
   function f(el) {
     return el.getAttribute("data-card-name")
-    // mdn array find
-    // { name: 'aquaman', img: 'aquaman.jpg' }
   }
 
   // Bind the click event of each element to a function
@@ -57,36 +57,39 @@ window.addEventListener('load', (event) => {
       //
       // si playingCardEl vaut rien => playingCardEl = Card
       
-      if (playingCardEl===undefined){
-        playingCardEl=card 
-        console.log(card)
+      if (card1===undefined){
+        card1=card 
+        console.log("card1 =",card1)
       }
-      // sinon: on veut comparer card avec playing card
-      else {
-        // memoryGame.checkIfPair(playingCardEl,card)
-        
-        const cardA = f(playingCardEl)
-        const cardB = f(card)
+      else if (card1!=undefined && card2===undefined){
+        card2=card
+        console.log("card2 =",card2)
 
+        const cardA = f(card1)
+        const cardB = f(card2)
         if (memoryGame.checkIfPair(cardA,cardB)===true){
-          playingCardEl.classList.add("blocked")
-          card.classList.add("blocked")
+          card1.classList.add("blocked")
+          card2.classList.add("blocked")
+
+          card1=undefined
+          card2=undefined
+          if(memoryGame.checkIfFinished() === true){
+            window.alert("YOU WON!")
+          }
         }
-        else{
-          playingCardEl.classList.remove('turned')
-          card.classList.remove('turned')
-        }
-        playingCardEl=undefined
       }
-      
-      //   - si ca match
-      //   - sinon...
-      //   - reset playingCardEl
-      //
-      // TODO: write some code here
+      else if (card1!=undefined && card2 !=undefined && card3===undefined){
+        card1.classList.remove('turned')
+        card2.classList.remove('turned')
+        card3=card
+        card1=card3
+        card2=undefined
+        card3=undefined
+        card3.classList.remove('turned')
+        console.log("card1=",card1)
+      }
+
       console.log(`Card clicked: ${card}`);
-      //document.querySelector('.back').classList.toggle('back',)
-      //document.querySelector('.front').classList.toggle('front',)
     });
   });
 });

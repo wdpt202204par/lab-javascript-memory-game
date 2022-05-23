@@ -15,8 +15,12 @@ class MemoryGame {
   
   checkIfPair(card1, card2) {
     this.pairsClicked += 1
+    let pairsClickedEl = document.querySelector('#pairs-clicked')
+    let pairsGuessedEl = document.querySelector('#pairs-guessed')
+    pairsClickedEl.innerHTML = `${this.pairsClicked}`
     if (card1 === card2){
       this.pairsGuessed +=1;
+      pairsGuessedEl.innerHTML = `${this.pairsGuessed}`
       return true;
     }
     else {
