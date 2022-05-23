@@ -4,37 +4,31 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
-    // add the rest of the class properties here
   }
 
   shuffleCards() {
-    let shuffleCardsArr = this.cards.sort((a, b) => 0.5 - Math.random());
+    let shuffleCardsArr = this.cards.sort((a, b) => 0.5 - Math.random());     // on crée un tableau reprenant le tableau cards en le triant aléatoirement
     return shuffleCardsArr
-    }
-    // ... write your code here
-  
-  checkIfPair(card1, card2) {
-    this.pairsClicked += 1
-    let pairsClickedEl = document.querySelector('#pairs-clicked')
-    let pairsGuessedEl = document.querySelector('#pairs-guessed')
-    pairsClickedEl.innerHTML = `${this.pairsClicked}`
-    if (card1 === card2){
-      this.pairsGuessed +=1;
-      pairsGuessedEl.innerHTML = `${this.pairsGuessed}`
-      return true;
-    }
-    else {
-      return false;
-    }
-    // ... write your code here
   }
 
-  checkIfFinished() {
-    // ... write your code here
-    if (this.pairsGuessed===this.cards.length/2){
-      return true
+  checkIfPair(card1, card2) {                                                     // methode checkIfPair()
+    this.pairsClicked += 1                                                        // on ajoute 1 au compteur de paires cliquées
+    document.querySelector('#pairs-clicked').innerHTML = `${this.pairsClicked}`   // on vient écrire la valeur du compteur dans la balise prévue
+    if (card1 === card2) {                                                        // si les cartes sont identiques, alors:
+      this.pairsGuessed += 1;                                                     // on ajoute 1 au compteur de paires trouvées
+      document.querySelector('#pairs-guessed').innerHTML = `${this.pairsGuessed}` // on vient écrire la valeur du compteur dans la balise prévue
+      return true;                                                                // on retourne true
     }
-    else {
+    else {                                                                        // sinon, alors on retourne false
+      return false;
+    }
+  }
+
+  checkIfFinished() {                                     // methode checkIfFinished()
+    if (this.pairsGuessed === this.cards.length / 2) {    // si le nombre de paires trouvée est égale a la moitié du nombre de cartes alors
+      return true                                         // on retourne true
+    }
+    else {                                                // sinon on retourne false
       return false
     }
   }
