@@ -74,9 +74,7 @@ window.addEventListener('load', (event) => {
 
           card1 = undefined                                   // on reset les valeur de carte 1 et carte 2
           card2 = undefined
-          if (memoryGame.checkIfFinished() === true) {       // on vient verifier si la partie est terminée. Si oui:
-            window.alert("YOU WON!")                         // Alerte: "YOU WON"
-          }
+          memoryGame.checkIfFinished()                        // on vient vérifier si la partie est terminée
         }
       }
       else if (card1 != undefined && card2 != undefined && card3 === undefined) { //Si les deux cartes sont definies (mais différentes)
@@ -84,7 +82,6 @@ window.addEventListener('load', (event) => {
         card2.classList.remove('turned')
         card3 = card                                    // la carte 3 devient la carte cliquée
         card1 = card3                                   // la carte 3 donne sa valeur à la carte 1
-        card3.classList.remove('turned')                // on retire "turned" de la carte 3
         card2 = undefined                               // on reset les valeurs de carte 2 et carte 3
         card3 = undefined
         console.log("card1=", card1)

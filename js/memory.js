@@ -26,6 +26,8 @@ class MemoryGame {
 
   checkIfFinished() {                                     // methode checkIfFinished()
     if (this.pairsGuessed === this.cards.length / 2) {    // si le nombre de paires trouvée est égale a la moitié du nombre de cartes alors
+      //on vient écrire le message de victoire dans le memory-board
+      document.querySelector('#memory-board').innerHTML = `<h1><br>You won with ${this.pairsClicked} tries!<br><br>Reload page for a new game.</h1>` 
       return true                                         // on retourne true
     }
     else {                                                // sinon on retourne false
